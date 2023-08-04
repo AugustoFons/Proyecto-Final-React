@@ -16,12 +16,12 @@ const App = () => {
 
   const read_state = async () => {
     const ENDPOINTS = {
-      smartphone: "https://productosjson.onrender.com/productos-smartphone",
-      tvs: "https://productosjson.onrender.com/productos-tvs",
-      audio: "https://productosjson.onrender.com/productos-audio",
-      destacados: "https://productosjson.onrender.com/productos-destacados",
-      carrito: "https://productosjson.onrender.com/carrito",
-      favoritos: "https://productosjson.onrender.com/favoritos"     
+      smartphone: "https://jsonserver-nn83.onrender.com/productos-smartphone",
+      tvs: "https://jsonserver-nn83.onrender.com/productos-tvs",
+      audio: "https://jsonserver-nn83.onrender.com/productos-audio",
+      destacados: "https://jsonserver-nn83.onrender.com/productos-destacados",
+      carrito: "https://jsonserver-nn83.onrender.com/carrito",
+      favoritos: "https://jsonserver-nn83.onrender.com/favoritos"     
     };
     const resSmartphone = await axios.get(ENDPOINTS.smartphone),
       resTvs = await axios.get(ENDPOINTS.tvs),
@@ -63,7 +63,7 @@ const App = () => {
     let itemInCarrito = state.carrito.find(item => item.id === nuevoProd.id)
 
     if(itemInCarrito){
-      let ENDPOINTS = `https://productosjson.onrender.com/carrito/${data.id}`
+      let ENDPOINTS = `https://jsonserver-nn83.onrender.com/carrito/${data.id}`
 
       let OPTIONS = {
         method: 'PUT',
@@ -81,7 +81,7 @@ const App = () => {
         headers: {"content-type": "application/json"},
         data: JSON.stringify({ ...data, cantidad: 1, precioT: data.precio})
       };
-      let res = await axios("https://productosjson.onrender.com/carrito", OPTIONS),
+      let res = await axios("https://jsonserver-nn83.onrender.com/carrito", OPTIONS),
       itemData = await res.data
 
       dispatch({type: ADD_TO_CART, payload: {itemData}});
@@ -92,7 +92,7 @@ const App = () => {
 
     if(all) {
     
-      let ENDPOINTS = `https://productosjson.onrender.com/carrito/${data.id}`
+      let ENDPOINTS = `https://jsonserver-nn83.onrender.com/carrito/${data.id}`
 
       let OPTIONS = {
         method: 'DELETE',
@@ -109,7 +109,7 @@ const App = () => {
 
       if(itemAEliminar.cantidad > 1){
 
-        let ENDPOINTS = `https://productosjson.onrender.com/carrito/${data.id}`
+        let ENDPOINTS = `https://jsonserver-nn83.onrender.com/carrito/${data.id}`
 
         let OPTIONS = {
           method: 'PUT',
@@ -123,7 +123,7 @@ const App = () => {
       }
       else {
 
-        let ENDPOINTS = `https://productosjson.onrender.com/carrito/${data.id}`
+        let ENDPOINTS = `https://jsonserver-nn83.onrender.com/carrito/${data.id}`
 
         let OPTIONS = {
           method: 'DELETE',
@@ -143,7 +143,7 @@ const App = () => {
 
     state.carrito.map((prod) => {
 
-      let ENDPOINTS = `https://productosjson.onrender.com/carrito/${prod.id}`
+      let ENDPOINTS = `https://jsonserver-nn83.onrender.com/carrito/${prod.id}`
 
       let OPTIONS = {
         method: 'DELETE',
@@ -163,7 +163,7 @@ const App = () => {
 
     if(itemInCarrito){
 
-      let ENDPOINTS = `https://productosjson.onrender.com/favoritos/${data.id}`
+      let ENDPOINTS = `https://jsonserver-nn83.onrender.com/favoritos/${data.id}`
 
         let OPTIONS = {
           method: 'DELETE',
@@ -181,7 +181,7 @@ const App = () => {
         headers: {"content-type": "application/json"},
         data: JSON.stringify({ ...data })
       };
-      let res = await axios("https://productosjson.onrender.com/favoritos", OPTIONS),
+      let res = await axios("https://jsonserver-nn83.onrender.com/favoritos", OPTIONS),
       itemData = await res.data
   
       dispatch({type: ADD_TO_FAV, payload: {itemData}});
@@ -191,7 +191,7 @@ const App = () => {
 
   const deleteFromFav = async (data) => {
 
-        let ENDPOINTS = `https://productosjson.onrender.com/favoritos/${data.id}`
+        let ENDPOINTS = `https://jsonserver-nn83.onrender.com/favoritos/${data.id}`
 
         let OPTIONS = {
           method: 'DELETE',
