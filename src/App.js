@@ -10,6 +10,7 @@ const {READ_STATE ,ADD_TO_CART, REMOVE_ALL_PRODUCT, REMOVE_ONE_PRODUCT, CLEAR_CA
 
 const image = imagenes;
 
+
 const App = () => {
 
   const [state, dispatch] = useReducer(shoppingReducer, initialState)
