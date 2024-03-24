@@ -17,12 +17,12 @@ const App = () => {
 
   const read_state = async () => {
     const ENDPOINTS = {
-      smartphone: "https://django-json-server.vercel.app/productosSmartphone",
-      tvs: "https://django-json-server.vercel.app/productosTvs",
-      audio: "https://django-json-server.vercel.app/productosAudio",
-      destacados: "https://django-json-server.vercel.app/productosDestacados/",
-      carrito: "https://django-json-server.vercel.app/carrito/",
-      favoritos: "https://django-json-server.vercel.app/favoritos/"     
+      smartphone: "http://127.0.0.1:8000/productosSmartphone",
+      tvs: "http://127.0.0.1:8000/productosTvs",
+      audio: "http://127.0.0.1:8000/productosAudio",
+      destacados: "http://127.0.0.1:8000/productosDestacados/",
+      carrito: "http://127.0.0.1:8000/carrito/",
+      favoritos: "http://127.0.0.1:8000/favoritos/"     
     };
     const resSmartphone = await axios.get(ENDPOINTS.smartphone),
       resTvs = await axios.get(ENDPOINTS.tvs),
@@ -64,7 +64,7 @@ const App = () => {
     let itemInCarrito = state.carrito.find(item => item.id === nuevoProd.id)
 
     if(itemInCarrito){
-      let ENDPOINTS = `https://django-json-server.vercel.app/carrito/${data.id}/`
+      let ENDPOINTS = `http://127.0.0.1:8000/carrito/${data.id}/`
 
       let OPTIONS = {
         method: 'PUT',
@@ -82,7 +82,7 @@ const App = () => {
         headers: {"content-type": "application/json"},
         data: JSON.stringify({ ...data, cantidad: 1, precioT: data.precio})
       };
-      let res = await axios("https://django-json-server.vercel.app/carrito/", OPTIONS),
+      let res = await axios("http://127.0.0.1:8000/carrito/", OPTIONS),
       itemData = data.id
 
       dispatch({type: ADD_TO_CART, payload: {itemData}});
@@ -93,7 +93,7 @@ const App = () => {
 
     if(all) {
     
-      let ENDPOINTS = `https://django-json-server.vercel.app/carrito/${data.id}/`
+      let ENDPOINTS = `http://127.0.0.1:8000/carrito/${data.id}/`
 
       let OPTIONS = {
         method: 'DELETE',
@@ -110,7 +110,7 @@ const App = () => {
 
       if(itemAEliminar.cantidad > 1){
 
-        let ENDPOINTS = `https://django-json-server.vercel.app/carrito/${data.id}/`
+        let ENDPOINTS = `http://127.0.0.1:8000/carrito/${data.id}/`
 
         let OPTIONS = {
           method: 'PUT',
@@ -124,7 +124,7 @@ const App = () => {
       }
       else {
 
-        let ENDPOINTS = `https://django-json-server.vercel.app/carrito/${data.id}/`
+        let ENDPOINTS = `http://127.0.0.1:8000/carrito/${data.id}/`
 
         let OPTIONS = {
           method: 'DELETE',
@@ -144,7 +144,7 @@ const App = () => {
 
     state.carrito.map((prod) => {
 
-      let ENDPOINTS = `https://django-json-server.vercel.app/carrito/${prod.id}/`
+      let ENDPOINTS = `http://127.0.0.1:8000/carrito/${prod.id}/`
 
       let OPTIONS = {
         method: 'DELETE',
@@ -159,40 +159,29 @@ const App = () => {
   }
 
   const addToFav = async (data) => {
+        //Unifico el estado
+        const objetoUnificador = state.productosSmartphone.concat(state.productosTvs, state.productosAudio)
 
-    let itemInCarrito = state.favoritos.find(item => item.id === data.id)
-
-    if(itemInCarrito){
-
-      let ENDPOINTS = `https://django-json-server.vercel.app/favoritos/${data.id}`
-
-        let OPTIONS = {
-          method: 'DELETE',
-          headers: {"content-type": "application/json"},
-        },
-
-        res = await axios(ENDPOINTS, OPTIONS)
-
-        dispatch({type: REMOVE_FAV, payload: data.id});
-        
-    }
-    else{
-      let OPTIONS = {
-        method: 'POST',
-        headers: {"content-type": "application/json"},
-        data: JSON.stringify({ ...data })
-      };
-      let res = await axios("https://django-json-server.vercel.app/favoritos/", OPTIONS),
-      itemData = data.id
-  
-      dispatch({type: ADD_TO_FAV, payload: {itemData}});
-    }
+        let nuevoProd = objetoUnificador.find(producto => producto.id === data.id)
     
+        let itemInFav = state.favoritos.find(item => item.id === nuevoProd.id)
+        
+        if  (!itemInFav){
+          let OPTIONS = {
+            method: 'POST',
+            headers: {"content-type": "application/json"},
+            data: JSON.stringify({ ...data })
+          };
+          let res = await axios("http://127.0.0.1:8000/favoritos/", OPTIONS),
+          itemData = data.id
+      
+          dispatch({type: ADD_TO_FAV, payload: {itemData}});
+        }
   }
 
   const deleteFromFav = async (data) => {
 
-        let ENDPOINTS = `https://django-json-server.vercel.app/favoritos/${data.id}`
+        let ENDPOINTS = `http://127.0.0.1:8000/favoritos/${data.id}`
 
         let OPTIONS = {
           method: 'DELETE',

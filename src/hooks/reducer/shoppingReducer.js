@@ -89,11 +89,18 @@ export const shoppingReducer = (state, action) => {
 
         case ADD_TO_FAV:{
             
-            const objetoUnificador = state.productosSmartphone.concat(state.productosTvs, state.productosAudio, state.productosDestacados, state.productosFavoritos)
+
+            const objetoUnificador = state.productosSmartphone.concat(state.productosTvs, state.productosAudio)
 
             let nuevoProd = objetoUnificador.find(producto => producto.id === action.payload.itemData)
+        
+            let itemInFav = state.favoritos.find(item => item.id === nuevoProd.id)
 
-            return {
+            return itemInFav ?
+                {
+                    
+                }
+            : {
                 ...state,
                 favoritos: [...state.favoritos, { ...nuevoProd }],
             }

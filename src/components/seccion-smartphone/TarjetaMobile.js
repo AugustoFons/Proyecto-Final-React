@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import BotonFav from "../Favoritos/BotonFav";
 
-
 const TarjetaMobile = ({ prod, addToCart, addToFav }) => {
 
     const [fav, setFav] = useState(true)    //estado para visualizar el boton de favorito con y sin color
@@ -43,9 +42,7 @@ const TarjetaMobile = ({ prod, addToCart, addToFav }) => {
             align="center"
             bg="rgba(80, 67, 117, .8)"
             >
-            <Box
-                onClick={() => addToFav(prod)}
-                >
+            <Box>
                 <BotonFav fav={fav} setFav={setFav} addToFav={addToFav} prod={prod}/>
             </Box>
             <CardBody

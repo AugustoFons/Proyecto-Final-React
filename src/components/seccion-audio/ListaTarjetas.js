@@ -6,7 +6,6 @@ import SwiperAudio from "./SwiperAudio";
 
 const ListaTarjetas = ({ producto, addToCart, addToFav }) => {
 
-
     return (
         <Flex
             mt="30px"

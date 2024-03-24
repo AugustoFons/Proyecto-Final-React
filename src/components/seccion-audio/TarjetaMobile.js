@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import BotonFav from "../Favoritos/BotonFav";
 
-
 const TarjetaMobile = ({ prod, addToCart, addToFav }) => {
 
     const [fav, setFav] = useState(true)    //estado para visualizar el boton de favorito con y sin color

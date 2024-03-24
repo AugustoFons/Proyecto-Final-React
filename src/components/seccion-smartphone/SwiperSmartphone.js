@@ -8,7 +8,6 @@ import "swiper/css/navigation";
 import TarjetaMobile from "./TarjetaMobile";
 
 
-
 const SwiperSmartphone = ({ producto, addToCart, addToFav}) => {
     return (
         <Swiper

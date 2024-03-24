@@ -6,7 +6,6 @@ import SwiperSmartphone from "./SwiperSmartphone";
 
 const ListaTarjetas = ({ producto, addToCart, addToFav }) => {
 
-
     return (
         <Flex
             mt="30px"
