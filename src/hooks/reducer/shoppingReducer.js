@@ -33,7 +33,7 @@ export const shoppingReducer = (state, action) => {
             const objetoUnificador = state.productosSmartphone.concat(state.productosTvs, state.productosAudio, state.productosDestacados, state.productosFavoritos)
 
             //Buscar el producto
-            let nuevoProd = objetoUnificador.find(producto => producto.id === action.payload.itemData.id)
+            let nuevoProd = objetoUnificador.find(producto => producto.id === action.payload.itemData)
 
             //Ver si el producto existe en el carrito
             let itemInCarrito = state.carrito.find(item => item.id === nuevoProd.id)
@@ -88,10 +88,10 @@ export const shoppingReducer = (state, action) => {
         }
 
         case ADD_TO_FAV:{
+            
+            const objetoUnificador = state.productosSmartphone.concat(state.productosTvs, state.productosAudio, state.productosDestacados, state.productosFavoritos)
 
-            const objetoUnificador = state.productosSmartphone.concat(state.productosTvs, state.productosAudio, state.productosDestacados)
-
-            let nuevoProd = objetoUnificador.find(producto => producto.id === action.payload.itemData.id)
+            let nuevoProd = objetoUnificador.find(producto => producto.id === action.payload.itemData)
 
             return {
                 ...state,

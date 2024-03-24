@@ -17,12 +17,12 @@ const App = () => {
 
   const read_state = async () => {
     const ENDPOINTS = {
-      smartphone: "https://jsonserver-nn83.onrender.com/productos-smartphone",
-      tvs: "https://jsonserver-nn83.onrender.com/productos-tvs",
-      audio: "https://jsonserver-nn83.onrender.com/productos-audio",
-      destacados: "https://jsonserver-nn83.onrender.com/productos-destacados",
-      carrito: "https://jsonserver-nn83.onrender.com/carrito",
-      favoritos: "https://jsonserver-nn83.onrender.com/favoritos"     
+      smartphone: "https://django-json-server.vercel.app/productosSmartphone",
+      tvs: "https://django-json-server.vercel.app/productosTvs",
+      audio: "https://django-json-server.vercel.app/productosAudio",
+      destacados: "https://django-json-server.vercel.app/productosDestacados/",
+      carrito: "https://django-json-server.vercel.app/carrito/",
+      favoritos: "https://django-json-server.vercel.app/favoritos/"     
     };
     const resSmartphone = await axios.get(ENDPOINTS.smartphone),
       resTvs = await axios.get(ENDPOINTS.tvs),
@@ -64,7 +64,7 @@ const App = () => {
     let itemInCarrito = state.carrito.find(item => item.id === nuevoProd.id)
 
     if(itemInCarrito){
-      let ENDPOINTS = `https://jsonserver-nn83.onrender.com/carrito/${data.id}`
+      let ENDPOINTS = `https://django-json-server.vercel.app/carrito/${data.id}/`
 
       let OPTIONS = {
         method: 'PUT',
@@ -72,7 +72,7 @@ const App = () => {
         data: JSON.stringify({...data, cantidad: itemInCarrito.cantidad + 1, precioT: itemInCarrito.precio.toFixed(3) * (itemInCarrito.cantidad + 1)})
       },
       res = await axios(ENDPOINTS, OPTIONS),
-      itemData = await res.data
+      itemData = data.id
 
       dispatch({type: ADD_TO_CART, payload: {itemData}});
     }
@@ -82,8 +82,8 @@ const App = () => {
         headers: {"content-type": "application/json"},
         data: JSON.stringify({ ...data, cantidad: 1, precioT: data.precio})
       };
-      let res = await axios("https://jsonserver-nn83.onrender.com/carrito", OPTIONS),
-      itemData = await res.data
+      let res = await axios("https://django-json-server.vercel.app/carrito/", OPTIONS),
+      itemData = data.id
 
       dispatch({type: ADD_TO_CART, payload: {itemData}});
     }
@@ -93,7 +93,7 @@ const App = () => {
 
     if(all) {
     
-      let ENDPOINTS = `https://jsonserver-nn83.onrender.com/carrito/${data.id}`
+      let ENDPOINTS = `https://django-json-server.vercel.app/carrito/${data.id}/`
 
       let OPTIONS = {
         method: 'DELETE',
@@ -110,7 +110,7 @@ const App = () => {
 
       if(itemAEliminar.cantidad > 1){
 
-        let ENDPOINTS = `https://jsonserver-nn83.onrender.com/carrito/${data.id}`
+        let ENDPOINTS = `https://django-json-server.vercel.app/carrito/${data.id}/`
 
         let OPTIONS = {
           method: 'PUT',
@@ -124,7 +124,7 @@ const App = () => {
       }
       else {
 
-        let ENDPOINTS = `https://jsonserver-nn83.onrender.com/carrito/${data.id}`
+        let ENDPOINTS = `https://django-json-server.vercel.app/carrito/${data.id}/`
 
         let OPTIONS = {
           method: 'DELETE',
@@ -144,7 +144,7 @@ const App = () => {
 
     state.carrito.map((prod) => {
 
-      let ENDPOINTS = `https://jsonserver-nn83.onrender.com/carrito/${prod.id}`
+      let ENDPOINTS = `https://django-json-server.vercel.app/carrito/${prod.id}/`
 
       let OPTIONS = {
         method: 'DELETE',
@@ -164,7 +164,7 @@ const App = () => {
 
     if(itemInCarrito){
 
-      let ENDPOINTS = `https://jsonserver-nn83.onrender.com/favoritos/${data.id}`
+      let ENDPOINTS = `https://django-json-server.vercel.app/favoritos/${data.id}`
 
         let OPTIONS = {
           method: 'DELETE',
@@ -182,8 +182,8 @@ const App = () => {
         headers: {"content-type": "application/json"},
         data: JSON.stringify({ ...data })
       };
-      let res = await axios("https://jsonserver-nn83.onrender.com/favoritos", OPTIONS),
-      itemData = await res.data
+      let res = await axios("https://django-json-server.vercel.app/favoritos/", OPTIONS),
+      itemData = data.id
   
       dispatch({type: ADD_TO_FAV, payload: {itemData}});
     }
@@ -192,7 +192,7 @@ const App = () => {
 
   const deleteFromFav = async (data) => {
 
-        let ENDPOINTS = `https://jsonserver-nn83.onrender.com/favoritos/${data.id}`
+        let ENDPOINTS = `https://django-json-server.vercel.app/favoritos/${data.id}`
 
         let OPTIONS = {
           method: 'DELETE',
