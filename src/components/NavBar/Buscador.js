@@ -40,7 +40,8 @@ import '../../css/buscador.css'
         const onSearchValueChange = (event) => {  
              // trae el valor de entrada del input
                 setSearchValue(event.target.value);
-        }
+                window.scrollTo(0, 0);
+            }
 
         
 

@@ -133,7 +133,7 @@ import NavBotonFav from "../Favoritos/NavBotonFav";
             </Box>
             <ProductosBuscados producto={producto} openSearch={openSearch} searchValue={searchValue}>
                 {
-                searchedProd.map(prod => (<TarjetaBuscador key={ prod.id } prod={ prod } addToCart={addToCart}/>))
+                searchedProd.map((prod, index) => <TarjetaBuscador key={ index } prod={ prod } addToCart={addToCart} addToFav={addToFav}/>)
                 }
             </ProductosBuscados>
         </>
