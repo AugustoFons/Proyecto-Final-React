@@ -34,8 +34,8 @@ const HomeSlider = () => {
             navigation={true}
             modules={[Autoplay, Pagination, Navigation]}
             >
-                <SwiperSlide style={{height:'75vh'}}>
-                    <img src={img1} style={{width: '100%', background: 'cover',}} alt="" />
+                <SwiperSlide style={{height:'85vh'}}>
+                    <img src={img1} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top'}} alt="" />
                     <div style={{
                         display: 'flex',
                         flexDirection: "column",
@@ -55,8 +55,8 @@ const HomeSlider = () => {
                 }}><b>Tu futuro a sólo un click</b></p>
                 </div>
                 </SwiperSlide>
-                <SwiperSlide style={{height:'75vh'}}>
-                <img src={img2} style={{width: '100%', background: 'cover'}} alt="" />
+                <SwiperSlide style={{height:'85vh'}}>
+                <img src={img2} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center'}} alt="" />
                 <div className="divsMobile" style={{
                         display: 'flex',
                         flexDirection: "column",
@@ -68,8 +68,8 @@ const HomeSlider = () => {
                 <Link href="#SeccionDestacados" className="links"> <BotonOfertas/> </Link>
                 </div>
                 </SwiperSlide>
-                <SwiperSlide style={{height:'75vh'}}>
-                <img src={img3} style={{width: '100%',}} alt="" />
+                <SwiperSlide style={{height:'85vh'}}>
+                <img src={img3} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top'}} alt="" />
                 <div style={{
                         display: 'flex',
                         flexDirection: "column",
@@ -81,8 +81,8 @@ const HomeSlider = () => {
                 <BotonPediLaTuya/>
                 </div>
                 </SwiperSlide>
-                <SwiperSlide style={{height:'75vh'}}>
-                <img src={img4} style={{width: '100%',}} alt="" />
+                <SwiperSlide style={{height:'85vh'}}>
+                <img src={img4} style={{width: '100%', height: '100%', objectFit: 'cover'}} alt="" />
                 <div style={{
                         display: 'flex',
                         flexDirection: "column",
@@ -97,7 +97,7 @@ const HomeSlider = () => {
             </Swiper>
         </div>
     </>
-  )
+)
 }
 
 export default HomeSlider

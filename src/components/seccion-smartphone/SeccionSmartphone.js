@@ -1,5 +1,5 @@
 import fondoSmartphone from "./img/fondo/fondo-smartphone.png"
-import { Box, Heading, Text, Flex } from "@chakra-ui/react";
+import { Box, Heading, Text, Flex, Spinner } from "@chakra-ui/react";
 import ListaTarjetas from "./ListaTarjetas";
 
 
@@ -61,19 +61,14 @@ const SeccionSmartphone = ({ producto, addToCart, addToFav }) => {
                         >¡Elegi el tuyo!</Heading>
                     {
                         producto.length === 0 ? 
-                        <Text
-                            display="flex"
-                            justifyContent="center"
-                            alignItems="center"
-                            h="50vh"
-                            w="100%"
-                            color="--backg-color"
-                            fontFamily="--first-font"
-                            fontWeight="bold"
-                            fontSize={["2rem","2.5rem","3rem"]}
-                            >
-                            ERROR: LOS DATOS NO SE PUEDEN VER
-                        </Text>
+                        <Spinner
+                            thickness='4px'
+                            speed='0.65s'
+                            emptyColor='gray.200'
+                            color='--backg-color'
+                            size='xl'
+                            margin='50px'
+                            />
                         :
                         <ListaTarjetas producto={producto} addToCart={addToCart} addToFav={addToFav} />
                     }
